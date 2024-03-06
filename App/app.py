@@ -45,6 +45,10 @@ def initialize_db():
 def index():
   return '<h1>Poke API v1.0</h1>'
 
+if __name__ == "__main__":
+  app.run(host='0.0.0.0', port=81)
+
+
 #Faith Routes-------------------------------------------------------
 @app.cli.command('create-user')
 
@@ -66,6 +70,4 @@ def create_user(username, email, password):
     print(newuser) # print the newly created user
 
 #-------------------------------------------------------------------
-if __name__ == "__main__":
-  app.run(host='0.0.0.0', port=81)
 
