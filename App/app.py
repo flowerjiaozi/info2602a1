@@ -36,9 +36,35 @@ CORS(app)
 jwt = JWTManager(app)
 
 # Initializer Function to be used in both init command and /init route
+@app.cli.command("init", help="Creates and initializes the database")
 def initialize_db():
   db.drop_all()
   db.create_all()
+
+  with open('pokemon.csv') as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+      new_pokemon = Pokemon(text=row['text'])  #create object
+      #update fields based on records
+      #new_todo.done = True if row['done'] == 'true' else False
+      new_pokemon.id = int(row['pokedex_number'])
+      new_pokemon.name = str(row['name'])
+      new_pokemon.attack = int(row['attack'])
+      new_pokemon.defense = int(row['defense'])
+      new_pokemon.hp = int(row['hp'])
+      new_pokemon.weight = int(row['weight_kg'])
+      new_pokemon.height = int(row['height_m'])
+      new_pokemon.sp_attack = int(row['sp_attack'])
+      new_pokemon.sp_defense = int(row['sp_defense'])
+      new_pokemon.speed = int(row['speed'])
+      new_pokemon.type1 = int(row['type1'])
+      new_pokemon.type2 = int(row['type2'])
+      
+
+      db.session.add(new_pokemon)  #queue changes for saving
+    db.session.commit()
+    #save all changes OUTSIDE the loop
+  print('database intialized')
 
 # ********** Routes **************
 @app.route('/')
