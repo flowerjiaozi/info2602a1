@@ -29,6 +29,8 @@ class User(db.Model):
   username = db.Column(db.String(80), unique=True, nullable=False)
   email = db.Column(db.String(120), unique=True, nullable=False)
   password = db.Column(db.String(120), nullable=False)
+  #Relationship between user pokemon and user
+  user_poke = db.relationship('UserPokemon', backref='user', lazy=True, cascade="all, delete-orphan")
 
   def catch_pokemon(self, pokemon_id, name):
     pokemon = Pokemon.query.get(pokemon_id)
