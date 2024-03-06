@@ -1,6 +1,6 @@
 {
 	"id": "af99e18d-e0b6-47aa-b586-2cec222c581a",
-	"name": "Localhost",
+	"name": "127.0.0.1",
 	"values": [
 		{
 			"key": "host",
