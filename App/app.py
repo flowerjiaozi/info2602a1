@@ -72,7 +72,7 @@ def index():
   return '<h1>Poke API v1.0</h1>'
 
 if __name__ == "__main__":
-  app.run(host='0.0.0.0', port=81)
+  app.run(host='0.0.0.0', port=41945)
 
 
 #Faith Routes-------------------------------------------------------
