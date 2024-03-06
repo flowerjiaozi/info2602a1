@@ -12,7 +12,7 @@ from flask_jwt_extended import (
     unset_jwt_cookies,
 )
 
-from .models import db, User, UserPokemon, Pokemon
+from models import db, User, UserPokemon, Pokemon
 
 # Configure Flask App
 app = Flask(__name__)
@@ -57,8 +57,8 @@ def initialize_db():
       new_pokemon.sp_attack = int(row['sp_attack'])
       new_pokemon.sp_defense = int(row['sp_defense'])
       new_pokemon.speed = int(row['speed'])
-      new_pokemon.type1 = int(row['type1'])
-      new_pokemon.type2 = int(row['type2'])
+      new_pokemon.type1 = str(row['type1'])
+      new_pokemon.type2 = str(row['type2']) if not row['type2'] else null
       
 
       db.session.add(new_pokemon)  #queue changes for saving
