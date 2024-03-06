@@ -3,7 +3,7 @@ image:
   file: .gitpod.Dockerfile
 ports: 
   - onOpen: open-browser
-    port: 35551
+    port: 8080
     visibility: public 
 tasks: 
   - init: pip install -r requirements.txt & flask init
