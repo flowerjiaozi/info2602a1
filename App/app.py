@@ -50,24 +50,7 @@ if __name__ == "__main__":
 
 
 #Faith Routes-------------------------------------------------------
-@app.cli.command('create-user')
 
-@click.argument('username', default='rick')
-@click.argument('email', default='rick@mail.com')
-@click.argument('password', default='rickpass')
-
-def create_user(username, email, password):
-  newuser = User(username, email, password)
-  try:
-    db.session.add(newuser)
-    db.session.commit()
-  except IntegrityError as e:
-    #let's the database undo any previous steps of a transaction
-    db.session.rollback()
-    # print(e.orig) #optionally print the error raised by the database
-    print("Username or email already taken!") #give the user a useful message
-  else:
-    print(newuser) # print the newly created user
 
 #-------------------------------------------------------------------
 
